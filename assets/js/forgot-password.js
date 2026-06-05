@@ -10,9 +10,9 @@ form.addEventListener("submit", async (e) => {
     const email = document.getElementById("fpEmail").value.trim();
 
     const actionCodeSettings = {
-        url: "https://aravinth152.github.io/TestProjectJour/reset-password.html",
-        handleCodeInApp: true,  // ← true so link opens YOUR page directly
-    };
+    url: "https://aravinth152.github.io/TestProjectJour/reset-password.html",
+    handleCodeInApp: false,
+};
 
     try {
         await sendPasswordResetEmail(auth, email, actionCodeSettings);
