@@ -10,7 +10,7 @@ form.addEventListener("submit", async (e) => {
     const email = document.getElementById("fpEmail").value.trim();
 
     // 👇 Replace with your actual GitHub Pages URL
-    const continueUrl = "https://YOUR-USERNAME.github.io/YOUR-REPO/reset-password.html";
+    const continueUrl = "https://aravinth152.github.io/TestProjectJour/reset-password.html";
 
     const actionCodeSettings = {
         url: continueUrl,
