@@ -1,24 +1,54 @@
-import { auth } from "./firebase.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import {
+    getAuth,
     confirmPasswordReset,
     verifyPasswordResetCode
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const form = document.getElementById("resetForm");
-const msgEl = document.getElementById("msg");
+const firebaseConfig = {
+    apiKey: "AIzaSyCfCCCZQz-fzNR6aSM85fHjJOeOdqrHDzM",
+    authDomain: "testauth-b380f.firebaseapp.com",
+    projectId: "testauth-b380f",
+    storageBucket: "testauth-b380f.firebasestorage.app",
+    messagingSenderId: "278543117601",
+    appId: "1:278543117601:web:2b506250221f0c74f42260"
+};
 
-// Read oobCode from URL → ?oobCode=XXXXX
-const params = new URLSearchParams(window.location.search);
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+// UI blocks
+const loadingBlock = document.getElementById("loadingBlock");
+const invalidBlock  = document.getElementById("invalidBlock");
+const resetForm     = document.getElementById("resetForm");
+const msgEl         = document.getElementById("msg");
+
+// Read oobCode from URL
+const params  = new URLSearchParams(window.location.search);
 const oobCode = params.get("oobCode");
 
-// If no oobCode, block the form immediately
+// ── On page load: verify the oobCode first ──
 if (!oobCode) {
-    msgEl.style.color = "red";
-    msgEl.textContent = "❌ Invalid or expired reset link. Please request a new one.";
-    form.style.display = "none";
+    // No code in URL at all
+    loadingBlock.style.display = "none";
+    invalidBlock.style.display = "block";
+} else {
+    // Verify with Firebase that code is still valid
+    verifyPasswordResetCode(auth, oobCode)
+        .then(() => {
+            // Code is valid → show the form
+            loadingBlock.style.display = "none";
+            resetForm.style.display    = "block";
+        })
+        .catch(() => {
+            // Code is expired or already used
+            loadingBlock.style.display = "none";
+            invalidBlock.style.display = "block";
+        });
 }
 
-form.addEventListener("submit", async (e) => {
+// ── Form submit ──
+resetForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
     const newPassword     = document.getElementById("password").value;
@@ -26,14 +56,12 @@ form.addEventListener("submit", async (e) => {
 
     msgEl.textContent = "";
 
-    // Client-side match check
     if (newPassword !== confirmPassword) {
-        msgEl.style.color = "red";
-        msgEl.textContent = "❌ Passwords do not match.";
+        msgEl.style.color   = "red";
+        msgEl.textContent   = "❌ Passwords do not match.";
         return;
     }
 
-    // Minimum length check
     if (newPassword.length < 8) {
         msgEl.style.color = "red";
         msgEl.textContent = "❌ Password must be at least 8 characters.";
@@ -41,30 +69,25 @@ form.addEventListener("submit", async (e) => {
     }
 
     try {
-        // 1. Verify the oobCode is still valid
-        await verifyPasswordResetCode(auth, oobCode);
-
-        // 2. Apply the new password
         await confirmPasswordReset(auth, oobCode, newPassword);
 
         msgEl.style.color = "green";
         msgEl.textContent = "✅ Password reset successful! Redirecting to login...";
-        form.style.display = "none";
+        resetForm.querySelector("button[type=submit]").disabled = true;
 
-        // Redirect to login after 3 seconds
         setTimeout(() => window.location.href = "login.html", 3000);
 
     } catch (error) {
         msgEl.style.color = "red";
 
         if (error.code === "auth/expired-action-code") {
-            msgEl.textContent = "❌ Reset link has expired. Please request a new one.";
+            msgEl.textContent = "❌ Reset link expired. Please request a new one.";
         } else if (error.code === "auth/invalid-action-code") {
-            msgEl.textContent = "❌ Reset link is invalid or already used.";
+            msgEl.textContent = "❌ Link already used or invalid.";
         } else if (error.code === "auth/weak-password") {
-            msgEl.textContent = "❌ Password is too weak. Use a stronger password.";
+            msgEl.textContent = "❌ Password is too weak.";
         } else {
-            msgEl.textContent = `❌ Error: ${error.message}`;
+            msgEl.textContent = `❌ ${error.message}`;
         }
     }
 });
