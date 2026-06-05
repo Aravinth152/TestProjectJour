@@ -24,8 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         try {
-            await sendPasswordResetEmail(auth, email);
-
+            await sendPasswordResetEmail(auth, email, {
+            url: "https://aravinth152.github.io/TestProjectJour/login.html",
+            handleCodeInApp: false
+            });
             msg.style.color = "green";
             msg.textContent = "Reset link sent to email!";
             form.reset();
