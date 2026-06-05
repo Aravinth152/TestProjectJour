@@ -9,12 +9,9 @@ form.addEventListener("submit", async (e) => {
 
     const email = document.getElementById("fpEmail").value.trim();
 
-    // 👇 Replace with your actual GitHub Pages URL
-    const continueUrl = "https://aravinth152.github.io/TestProjectJour/reset-password.html";
-
     const actionCodeSettings = {
-        url: continueUrl,
-        handleCodeInApp: false,
+        url: "https://aravinth152.github.io/TestProjectJour/reset-password.html",
+        handleCodeInApp: true,  // ← true so link opens YOUR page directly
     };
 
     try {
@@ -23,7 +20,6 @@ form.addEventListener("submit", async (e) => {
         messageEl.style.color = "green";
         messageEl.textContent = "✅ Reset link sent! Check your email.";
 
-        // Disable the form so they don't spam
         document.getElementById("fpEmail").disabled = true;
         form.querySelector("button[type=submit]").disabled = true;
 
