@@ -1,71 +1,70 @@
 import { auth } from "./firebase.js";
 import {
-    verifyPasswordResetCode,
-    confirmPasswordReset
+    confirmPasswordReset,
+    verifyPasswordResetCode
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const msg = document.getElementById("msg");
 const form = document.getElementById("resetForm");
+const msgEl = document.getElementById("msg");
 
-// Get oobCode from URL
-const urlParams = new URLSearchParams(window.location.search);
-const oobCode = urlParams.get("oobCode");
+// Read oobCode from URL → ?oobCode=XXXXX
+const params = new URLSearchParams(window.location.search);
+const oobCode = params.get("oobCode");
 
-// Validate reset link
-async function checkCode() {
-    if (!oobCode) {
-        msg.style.color = "red";
-        msg.textContent = "Invalid reset link.";
-        form.style.display = "none";
-        return;
-    }
-
-    try {
-        await verifyPasswordResetCode(auth, oobCode);
-
-        msg.style.color = "green";
-        msg.textContent = "Valid reset link. Enter your new password.";
-    } catch (err) {
-        msg.style.color = "red";
-        msg.textContent = "Reset link has expired or is invalid.";
-        form.style.display = "none";
-    }
+// If no oobCode, block the form immediately
+if (!oobCode) {
+    msgEl.style.color = "red";
+    msgEl.textContent = "❌ Invalid or expired reset link. Please request a new one.";
+    form.style.display = "none";
 }
 
-checkCode();
-
-// Reset password
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const pass = document.getElementById("newPassword").value.trim();
-    const confirm = document.getElementById("confirmPassword").value.trim();
+    const newPassword     = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
 
-    if (pass.length < 6) {
-        msg.style.color = "red";
-        msg.textContent = "Password must be at least 6 characters.";
+    msgEl.textContent = "";
+
+    // Client-side match check
+    if (newPassword !== confirmPassword) {
+        msgEl.style.color = "red";
+        msgEl.textContent = "❌ Passwords do not match.";
         return;
     }
 
-    if (pass !== confirm) {
-        msg.style.color = "red";
-        msg.textContent = "Passwords do not match.";
+    // Minimum length check
+    if (newPassword.length < 8) {
+        msgEl.style.color = "red";
+        msgEl.textContent = "❌ Password must be at least 8 characters.";
         return;
     }
 
     try {
-        await confirmPasswordReset(auth, oobCode, pass);
+        // 1. Verify the oobCode is still valid
+        await verifyPasswordResetCode(auth, oobCode);
 
-        msg.style.color = "green";
-        msg.textContent = "Password updated successfully! Redirecting...";
+        // 2. Apply the new password
+        await confirmPasswordReset(auth, oobCode, newPassword);
 
-        setTimeout(() => {
-            window.location.href =
-                "https://aravinth152.github.io/TestProjectJour/login.html";
-        }, 2000);
+        msgEl.style.color = "green";
+        msgEl.textContent = "✅ Password reset successful! Redirecting to login...";
+        form.style.display = "none";
 
-    } catch (err) {
-        msg.style.color = "red";
-        msg.textContent = err.message;
+        // Redirect to login after 3 seconds
+        setTimeout(() => window.location.href = "login.html", 3000);
+
+    } catch (error) {
+        msgEl.style.color = "red";
+
+        if (error.code === "auth/expired-action-code") {
+            msgEl.textContent = "❌ Reset link has expired. Please request a new one.";
+        } else if (error.code === "auth/invalid-action-code") {
+            msgEl.textContent = "❌ Reset link is invalid or already used.";
+        } else if (error.code === "auth/weak-password") {
+            msgEl.textContent = "❌ Password is too weak. Use a stronger password.";
+        } else {
+            msgEl.textContent = `❌ Error: ${error.message}`;
+        }
     }
 });

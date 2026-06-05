@@ -1,43 +1,41 @@
 import { auth } from "./firebase.js";
-import { sendPasswordResetEmail } 
-from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-console.log("Forgot password loaded");
+const form = document.getElementById("forgotForm");
+const messageEl = document.getElementById("step1Msg");
 
-document.addEventListener("DOMContentLoaded", () => {
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-    const form = document.getElementById("forgotForm");
-    const emailInput = document.getElementById("fpEmail");
-    const msg = document.getElementById("step1Msg");
+    const email = document.getElementById("fpEmail").value.trim();
 
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
+    // 👇 Replace with your actual GitHub Pages URL
+    const continueUrl = "https://YOUR-USERNAME.github.io/YOUR-REPO/reset-password.html";
 
-        const email = emailInput.value.trim();
+    const actionCodeSettings = {
+        url: continueUrl,
+        handleCodeInApp: false,
+    };
 
-        msg.textContent = "";
+    try {
+        await sendPasswordResetEmail(auth, email, actionCodeSettings);
 
-        if (!email) {
-            msg.style.color = "red";
-            msg.textContent = "Enter email first";
-            return;
+        messageEl.style.color = "green";
+        messageEl.textContent = "✅ Reset link sent! Check your email.";
+
+        // Disable the form so they don't spam
+        document.getElementById("fpEmail").disabled = true;
+        form.querySelector("button[type=submit]").disabled = true;
+
+    } catch (error) {
+        messageEl.style.color = "red";
+
+        if (error.code === "auth/user-not-found") {
+            messageEl.textContent = "❌ No account found with this email.";
+        } else if (error.code === "auth/invalid-email") {
+            messageEl.textContent = "❌ Invalid email address.";
+        } else {
+            messageEl.textContent = `❌ Error: ${error.message}`;
         }
-
-        try {
-            await sendPasswordResetEmail(auth, email, {
-            url: "https://aravinth152.github.io/TestProjectJour/reset-password.html",
-            handleCodeInApp: true
-            });
-            msg.style.color = "green";
-            msg.textContent = "Reset link sent to email!";
-            form.reset();
-
-        } catch (err) {
-            console.log(err);
-
-            msg.style.color = "red";
-            msg.textContent = err.code;
-        }
-    });
-
+    }
 });
