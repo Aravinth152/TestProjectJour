@@ -10,7 +10,7 @@ form.addEventListener("submit", async (e) => {
     const email = document.getElementById("fpEmail").value.trim();
 
     const actionCodeSettings = {
-    url: "https://aravinth152.github.io/TestProjectJour/reset-password.html",
+    url: "DROP YOUR HOSTING URL HERE/reset-password.html",
     handleCodeInApp: false,
 };
 

@@ -5,14 +5,7 @@ import {
     verifyPasswordResetCode
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyCfCCCZQz-fzNR6aSM85fHjJOeOdqrHDzM",
-    authDomain: "testauth-b380f.firebaseapp.com",
-    projectId: "testauth-b380f",
-    storageBucket: "testauth-b380f.firebasestorage.app",
-    messagingSenderId: "278543117601",
-    appId: "1:278543117601:web:2b506250221f0c74f42260"
-};
+import { auth } from "./firebase.js";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -27,13 +20,12 @@ const msgEl         = document.getElementById("msg");
 const params  = new URLSearchParams(window.location.search);
 const oobCode = params.get("oobCode");
 
-// ── On page load: verify the oobCode first ──
+
 if (!oobCode) {
     // No code in URL at all
     loadingBlock.style.display = "none";
     invalidBlock.style.display = "block";
 } else {
-    // Verify with Firebase that code is still valid
     verifyPasswordResetCode(auth, oobCode)
         .then(() => {
             // Code is valid → show the form
@@ -47,7 +39,7 @@ if (!oobCode) {
         });
 }
 
-// ── Form submit ──
+//Form submit
 resetForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 

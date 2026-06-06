@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const value = passwordInput.value;
 
-        // ✅ SHOW ONLY WHEN TYPING
+        //SHOWS ONLY WHEN TYPING
         if (value.length > 0) {
             strengthBar.style.display = "block";
             passwordRules.style.display = "block";

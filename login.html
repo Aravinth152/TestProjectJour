@@ -20,21 +20,14 @@
     <div class="container-fluid cuz-container">
         <div class="main">
             <!-- Login Form -->
-            <!-- FIX: Added id="loginForm" for safe targeting -->
             <form class="form" id="loginForm">
                 <div class="login-form">
                     <h2>Welcome Back!!</h2>
-
-                    <!-- FIX: Added ids; accepts both username OR email -->
                     <input id="loginIdentifier" type="text" class="form-input" placeholder="Email" required>
                     <input id="loginPassword"   type="password" class="form-input" placeholder="Password" required>
-
-                    <!-- FIX: Inline error message instead of just alert -->
                     <p id="loginError" style="color:red; font-size:14px; margin-bottom:8px;"></p>
-
                     <div class="form-options">
                         <label class="remember-me">
-                            <!-- FIX: Added id="rememberMe" so we can read it -->
                             <input type="checkbox" id="rememberMe"> Remember Me
                         </label>
                         <a href="./forgot-password.html" class="forgot-password">Forgot Password?</a>
