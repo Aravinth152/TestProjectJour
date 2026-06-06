@@ -7,7 +7,7 @@
 Your current structure is good! But for ThemeForest, add these files:
 
 ```
-JOUR-TEMPLATE/
+jour-template/
 ├── assets/
 │   ├── css/
 │   │   └── styles.css

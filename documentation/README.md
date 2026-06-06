@@ -188,7 +188,7 @@ Firebase supports Google, Facebook, GitHub, Apple, Twitter:
 ## 📚 File Structure
 
 ```
-JOUR-TEMPLATE/
+jour-template/
 ├── assets/
 │   ├── css/
 │   │   └── styles.css
