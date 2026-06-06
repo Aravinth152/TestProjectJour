@@ -188,30 +188,34 @@ Firebase supports Google, Facebook, GitHub, Apple, Twitter:
 ## 📚 File Structure
 
 ```
-loginpage/
+JOUR-TEMPLATE/
 ├── assets/
 │   ├── css/
-│   │   └── styles.css              (Main stylesheet)
-│   ├── js/
-│   │   ├── firebase.js             (Firebase config & init)
-│   │   ├── script.js               (Password strength meter)
-│   │   ├── register.js             (Registration logic)
-│   │   ├── login.js                (Login logic)
-│   │   ├── forgot-password.js      (Password reset request)
-│   │   ├── reset-password.js       (Password reset completion)
-│   │   └── dashboard.js            (Dashboard functionality)
-│   └── img/                        (Your images here)
-├── index.html                      (Register page)
-├── login.html                      (Login page)
-├── forgot-password.html            (Forgot password page)
-├── reset-password.html             (Reset password page)
-├── dashboard.html                  (User dashboard)
-├── action.html                     (Auth action handler)
-├── documentation.html              (Full HTML docs)
-├── README.md                       (This file)
-├── SETUP.md                        (Setup instructions)
-├── CHANGELOG.md                    (Version history)
-└── THEMEFOREST_GUIDE.md           (Upload guide)
+│   │   └── styles.css
+│   ├── img/
+│   └── js/
+│       ├── dashboard.js
+│       ├── firebase.js
+│       ├── forgot-password.js
+│       ├── login.js
+│       ├── register.js
+│       ├── reset-password.js
+│       └── script.js
+├── documentation/
+│   ├── assets\img/
+│   │   └── J-logo1.png
+│   ├── CHANGELOG.md
+│   ├── documentation.html
+│   ├── index.html
+│   ├── LICENSE.txt
+│   ├── README.md
+│   ├── SETUP.md
+│   └── THEMEFOREST_GUIDE...
+├── dashboard.html
+├── forgot-password.html
+├── index.html
+├── login.html
+└── reset-password.html
 ```
 
 ---

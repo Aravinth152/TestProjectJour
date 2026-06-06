@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2024-06-06
+## [1.0.0] - 2026-06-06
 
 ### Initial Release ✨
 
@@ -207,7 +207,7 @@ All notable changes to this project will be documented in this file.
 
 | Version | Release | Support Until |
 |---------|---------|---------------|
-| 1.0.0   | Jun 2024| Jun 2025      |
+| 1.0.0   | Jun 2026| Jun 2027      |
 
 ---
 
@@ -261,6 +261,6 @@ For support, customization, or questions:
 
 ---
 
-**Last Updated**: June 6, 2024
+**Last Updated**: June 6, 2026
 **Current Version**: 1.0.0
 **Status**: Stable, Production-Ready ✅

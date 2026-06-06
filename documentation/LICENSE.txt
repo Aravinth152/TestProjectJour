@@ -1,7 +1,7 @@
 COMPLETE AUTHENTICATION SYSTEM - LICENSE AGREEMENT
 
 Version 1.0.0
-Effective Date: June 6, 2024
+Effective Date: June 6, 2026
 
 PLEASE READ THIS LICENSE CAREFULLY BEFORE USING THE ITEM. BY DOWNLOADING, INSTALLING, OR USING THE ITEM, YOU ACKNOWLEDGE THAT YOU HAVE READ THIS LICENSE AND AGREE TO BE BOUND BY ITS TERMS.
 
@@ -185,7 +185,7 @@ If you do not agree to any part of this License, do not download, install, or us
 ================================================================================
 
 License Version: 1.0
-Last Updated: June 6, 2024
+Last Updated: June 6, 2026
 Author: Complete Authentication System
 
 ================================================================================
