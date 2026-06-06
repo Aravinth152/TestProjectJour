@@ -9,10 +9,10 @@ import {
 document.getElementById("loginForm").addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const email    = document.getElementById("loginIdentifier").value.trim();
+    const email = document.getElementById("loginIdentifier").value.trim();
     const password = document.getElementById("loginPassword").value;
     const remember = document.getElementById("rememberMe").checked;
-    const errorEl  = document.getElementById("loginError");
+    const errorEl = document.getElementById("loginError");
 
     errorEl.textContent = "";
 

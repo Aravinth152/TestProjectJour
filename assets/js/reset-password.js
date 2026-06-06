@@ -12,12 +12,12 @@ const auth = getAuth(app);
 
 // UI blocks
 const loadingBlock = document.getElementById("loadingBlock");
-const invalidBlock  = document.getElementById("invalidBlock");
-const resetForm     = document.getElementById("resetForm");
-const msgEl         = document.getElementById("msg");
+const invalidBlock = document.getElementById("invalidBlock");
+const resetForm = document.getElementById("resetForm");
+const msgEl = document.getElementById("msg");
 
 // Read oobCode from URL
-const params  = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search);
 const oobCode = params.get("oobCode");
 
 
@@ -30,7 +30,7 @@ if (!oobCode) {
         .then(() => {
             // Code is valid → show the form
             loadingBlock.style.display = "none";
-            resetForm.style.display    = "block";
+            resetForm.style.display = "block";
         })
         .catch(() => {
             // Code is expired or already used
@@ -43,14 +43,14 @@ if (!oobCode) {
 resetForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const newPassword     = document.getElementById("password").value;
+    const newPassword = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
     msgEl.textContent = "";
 
     if (newPassword !== confirmPassword) {
-        msgEl.style.color   = "red";
-        msgEl.textContent   = "❌ Passwords do not match.";
+        msgEl.style.color = "red";
+        msgEl.textContent = "❌ Passwords do not match.";
         return;
     }
 

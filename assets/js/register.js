@@ -13,12 +13,12 @@ document.getElementById("registerForm").addEventListener("submit", async (e) => 
     e.preventDefault();
 
     const firstName = document.getElementById("firstName").value.trim();
-    const lastName  = document.getElementById("lastName").value.trim();
-    const email     = document.getElementById("email").value.trim();
-    const username  = document.getElementById("username").value.trim();
-    const password  = document.getElementById("password").value;
-    const confirm   = document.getElementById("confirmPassword").value;
-    const errorEl   = document.getElementById("passwordError");
+    const lastName = document.getElementById("lastName").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
+    const errorEl = document.getElementById("passwordError");
 
     errorEl.textContent = "";
 

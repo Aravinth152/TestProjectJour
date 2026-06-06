@@ -11,32 +11,32 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 // ── UI Elements ──
-const avatarImg        = document.getElementById("avatarImg");
+const avatarImg = document.getElementById("avatarImg");
 const avatarInputLarge = document.getElementById("avatarInputLarge");
-const heroName         = document.getElementById("heroName");
-const heroUsername     = document.getElementById("heroUsername");
-const infoFirstName    = document.getElementById("infoFirstName");
-const infoLastName     = document.getElementById("infoLastName");
-const infoEmail        = document.getElementById("infoEmail");
-const infoUsername     = document.getElementById("infoUsername");
-const infoJoined       = document.getElementById("infoJoined");
+const heroName = document.getElementById("heroName");
+const heroUsername = document.getElementById("heroUsername");
+const infoFirstName = document.getElementById("infoFirstName");
+const infoLastName = document.getElementById("infoLastName");
+const infoEmail = document.getElementById("infoEmail");
+const infoUsername = document.getElementById("infoUsername");
+const infoJoined = document.getElementById("infoJoined");
 
-const logoutBtn        = document.getElementById("logoutBtn");
-const openEditBtn      = document.getElementById("openEditBtn");
-const closeEditBtn     = document.getElementById("closeEditBtn");
-const saveEditBtn      = document.getElementById("saveEditBtn");
-const editModal        = document.getElementById("editModal");
+const logoutBtn = document.getElementById("logoutBtn");
+const openEditBtn = document.getElementById("openEditBtn");
+const closeEditBtn = document.getElementById("closeEditBtn");
+const saveEditBtn = document.getElementById("saveEditBtn");
+const editModal = document.getElementById("editModal");
 
-const editFirstName    = document.getElementById("editFirstName");
-const editLastName     = document.getElementById("editLastName");
-const editUsername     = document.getElementById("editUsername");
-const editEmail        = document.getElementById("editEmail");
-const modalMsg         = document.getElementById("modalMsg");
-const toast            = document.getElementById("toast");
+const editFirstName = document.getElementById("editFirstName");
+const editLastName = document.getElementById("editLastName");
+const editUsername = document.getElementById("editUsername");
+const editEmail = document.getElementById("editEmail");
+const modalMsg = document.getElementById("modalMsg");
+const toast = document.getElementById("toast");
 
 // ── Default avatar (initials-based) ──
 function getInitialsAvatar(name) {
-    const initials = name ? name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0,2) : "U";
+    const initials = name ? name.split(" ").map(n => n[0]).join("").toUpperCase().slice(0, 2) : "U";
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140">
         <defs>
             <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -62,25 +62,25 @@ function showToast(msg, color = "#222") {
 // ── Populate dashboard with user data ──
 function populateDashboard(user, firestoreData) {
     const firstName = firestoreData?.firstName || "";
-    const lastName  = firestoreData?.lastName  || "";
-    const username  = firestoreData?.username  || user.displayName || "user";
-    const email     = user.email || "";
-    const joined    = firestoreData?.createdAt
-        ? new Date(firestoreData.createdAt).toLocaleDateString("en-US", { year:"numeric", month:"long", day:"numeric" })
+    const lastName = firestoreData?.lastName || "";
+    const username = firestoreData?.username || user.displayName || "user";
+    const email = user.email || "";
+    const joined = firestoreData?.createdAt
+        ? new Date(firestoreData.createdAt).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" })
         : "—";
 
     const fullName = [firstName, lastName].filter(Boolean).join(" ") || username;
 
     // Hero section
-    heroName.textContent     = fullName;
+    heroName.textContent = fullName;
     heroUsername.textContent = "@" + username;
 
     // Info cards
     infoFirstName.textContent = firstName || "—";
-    infoLastName.textContent  = lastName  || "—";
-    infoEmail.textContent     = email;
-    infoUsername.textContent  = username;
-    infoJoined.textContent    = joined;
+    infoLastName.textContent = lastName || "—";
+    infoEmail.textContent = email;
+    infoUsername.textContent = username;
+    infoJoined.textContent = joined;
 
     // Avatar: use photoURL if set, else initials
     avatarImg.src = user.photoURL || getInitialsAvatar(fullName);
@@ -119,9 +119,9 @@ avatarInputLarge.addEventListener("change", (e) => {
 // ── Open edit modal ──
 openEditBtn.addEventListener("click", () => {
     editFirstName.value = infoFirstName.textContent === "—" ? "" : infoFirstName.textContent;
-    editLastName.value  = infoLastName.textContent  === "—" ? "" : infoLastName.textContent;
-    editUsername.value  = infoUsername.textContent;
-    editEmail.value     = infoEmail.textContent;
+    editLastName.value = infoLastName.textContent === "—" ? "" : infoLastName.textContent;
+    editUsername.value = infoUsername.textContent;
+    editEmail.value = infoEmail.textContent;
     modalMsg.textContent = "";
     editModal.classList.add("active");
 });
@@ -138,8 +138,8 @@ saveEditBtn.addEventListener("click", async () => {
     if (!user) return;
 
     const newFirstName = editFirstName.value.trim();
-    const newLastName  = editLastName.value.trim();
-    const newUsername  = editUsername.value.trim();
+    const newLastName = editLastName.value.trim();
+    const newUsername = editUsername.value.trim();
 
     if (!newFirstName) {
         modalMsg.style.color = "red";
@@ -160,18 +160,18 @@ saveEditBtn.addEventListener("click", async () => {
     try {
         await updateDoc(doc(db, "users", user.uid), {
             firstName: newFirstName,
-            lastName:  newLastName,
-            username:  newUsername,
+            lastName: newLastName,
+            username: newUsername,
         });
 
         await updateProfile(user, { displayName: newUsername });
 
         const fullName = [newFirstName, newLastName].filter(Boolean).join(" ");
-        heroName.textContent     = fullName;
+        heroName.textContent = fullName;
         heroUsername.textContent = "@" + newUsername;
-        infoFirstName.textContent   = newFirstName || "—";
-        infoLastName.textContent    = newLastName  || "—";
-        infoUsername.textContent    = newUsername;
+        infoFirstName.textContent = newFirstName || "—";
+        infoLastName.textContent = newLastName || "—";
+        infoUsername.textContent = newUsername;
 
         if (!user.photoURL) {
             avatarImg.src = getInitialsAvatar(fullName);

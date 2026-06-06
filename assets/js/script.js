@@ -24,10 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        const hasLength  = value.length >= 8;
-        const hasUpper   = /[A-Z]/.test(value);
-        const hasLower   = /[a-z]/.test(value);
-        const hasNumber  = /[0-9]/.test(value);
+        const hasLength = value.length >= 8;
+        const hasUpper = /[A-Z]/.test(value);
+        const hasLower = /[a-z]/.test(value);
+        const hasNumber = /[0-9]/.test(value);
         const hasSpecial = /[^A-Za-z0-9]/.test(value);
 
         // rules update
@@ -53,12 +53,12 @@ document.addEventListener("DOMContentLoaded", () => {
             strengthFill.style.width = "33%";
             strengthFill.style.backgroundColor = "red";
             strengthText.textContent = "Weak Password";
-        } 
+        }
         else if (score <= 4) {
             strengthFill.style.width = "66%";
             strengthFill.style.backgroundColor = "orange";
             strengthText.textContent = "Medium Password";
-        } 
+        }
         else {
             strengthFill.style.width = "100%";
             strengthFill.style.backgroundColor = "green";

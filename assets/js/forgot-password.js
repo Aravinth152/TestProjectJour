@@ -10,9 +10,9 @@ form.addEventListener("submit", async (e) => {
     const email = document.getElementById("fpEmail").value.trim();
 
     const actionCodeSettings = {
-    url: "DROP YOUR HOSTING URL HERE/reset-password.html",
-    handleCodeInApp: false,
-};
+        url: "DROP YOUR HOSTING URL HERE/reset-password.html",
+        handleCodeInApp: false,
+    };
 
     try {
         await sendPasswordResetEmail(auth, email, actionCodeSettings);
