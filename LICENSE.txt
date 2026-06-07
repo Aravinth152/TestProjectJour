@@ -1,0 +1,7 @@
+## 📄 License
+
+This package includes a LICENSE.txt file containing the terms and conditions of use.
+
+Please review the license before using this item.
+
+Third-party resources used in this template are covered by their respective licenses and are documented in THIRD_PARTY_LICENSES.txt.

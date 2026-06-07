@@ -1,0 +1,8 @@
+Version 1.0.0
+- Initial ThemeForest Release
+- Login System
+- Registration System
+- Forgot Password
+- Reset Password
+- Dashboard
+- Firebase Authentication Integration

@@ -1,0 +1,27 @@
+Third-Party Assets
+
+## Images
+
+Some preview images used in this item are sourced from Unsplash.
+
+Unsplash License:
+https://unsplash.com/license
+
+Unsplash Website:
+https://unsplash.com
+
+Images are used for demonstration purposes only and may be replaced by purchasers.
+
+## Libraries
+
+Bootstrap 5
+License: MIT
+https://getbootstrap.com
+
+Firebase JavaScript SDK
+License: Apache License 2.0
+https://firebase.google.com
+
+Google Fonts (Poppins)
+License: Open Font License
+https://fonts.google.com
