@@ -7,34 +7,36 @@
 Your current structure is good! But for ThemeForest, add these files:
 
 ```
-jour-template/
-├── assets/
-│   ├── css/
-│   │   └── styles.css
-│   ├── img/
-│   └── js/
-│       ├── dashboard.js
-│       ├── firebase.js
-│       ├── forgot-password.js
-│       ├── login.js
-│       ├── register.js
-│       ├── reset-password.js
-│       └── script.js
-├── documentation/
-│   ├── assets\img/
-│   │   └── J-logo1.png
-│   ├── CHANGELOG.md
-│   ├── documentation.html
-│   ├── index.html
-│   ├── LICENSE.txt
-│   ├── README.md
-│   ├── SETUP.md
-│   └── THEMEFOREST_GUIDE...
-├── dashboard.html
-├── forgot-password.html
-├── index.html
-├── login.html
-└── reset-password.html
+jour-main-package/
+└── jour-template/
+    ├── assets/
+    │   ├── css/
+    │   │   └── styles.css
+    │   ├── img/
+    │   └── js/
+    │       ├── dashboard.js
+    │       ├── firebase.js
+    │       ├── forgot-password.js
+    │       ├── login.js
+    │       ├── register.js
+    │       ├── reset-password.js
+    │       └── script.js
+    ├── documentation/
+    │   ├── assets/
+    │   │   └── img/
+    │   │       └── J-logo1.png
+    │   ├── CHANGELOG.md
+    │   ├── documentation.html
+    │   ├── index.html
+    │   ├── LICENSE.txt
+    │   ├── README.md
+    │   ├── SETUP.md
+    │   └── THEMEFOREST_GUIDE...
+    ├── dashboard.html
+    ├── forgot-password.html
+    ├── index.html
+    ├── login.html
+    └── reset-password.html
 ```
 
 ---
