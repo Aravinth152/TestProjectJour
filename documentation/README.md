@@ -49,6 +49,7 @@ Jour-Authentication-Template/
 │
 ├── documentation/
 │   ├── assets/
+│   |   └── images/
 │   ├── documentation.html
 │   ├── README.md
 │   ├── SETUP.md

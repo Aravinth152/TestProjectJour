@@ -7,36 +7,32 @@
 Your current structure is good! But for ThemeForest, add these files:
 
 ```
-jour-main-package/
-└── jour-template/
-    ├── assets/
-    │   ├── css/
-    │   │   └── styles.css
-    │   ├── img/
-    │   └── js/
-    │       ├── dashboard.js
-    │       ├── firebase.js
-    │       ├── forgot-password.js
-    │       ├── login.js
-    │       ├── register.js
-    │       ├── reset-password.js
-    │       └── script.js
-    ├── documentation/
-    │   ├── assets/
-    │   │   └── img/
-    │   │       └── J-logo1.png
-    │   ├── CHANGELOG.md
-    │   ├── documentation.html
-    │   ├── index.html
-    │   ├── LICENSE.txt
-    │   ├── README.md
-    │   ├── SETUP.md
-    │   └── THEMEFOREST_GUIDE...
-    ├── dashboard.html
-    ├── forgot-password.html
-    ├── index.html
-    ├── login.html
-    └── reset-password.html
+Jour-Authentication-Template/
+│
+├── assets/
+│   ├── css/
+│   ├── js/
+│   └── images/
+│
+├── documentation/
+│   ├── assets/
+│   |   └── images/
+│   ├── documentation.html
+│   ├── README.md
+│   ├── SETUP.md
+│   ├── CHANGELOG.md
+│   ├── LICENSE.txt
+│   └── THIRD_PARTY_LICENSES.txt
+│
+├── dashboard.html
+├── forgot-password.html
+├── index.html
+├── login.html
+├── reset-password.html
+│
+├── README.txt
+├── CHANGELOG.txt
+└── LICENSE.txt
 ```
 
 ---
