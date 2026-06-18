@@ -53,7 +53,7 @@ body {
 .main {
     width: 100%;
     max-width: 1000px;
-    min-height: 60 0px;
+    min-height: 700px;
     height: auto;
     background: var(--bg-card);
     border-radius: 20px;
@@ -64,12 +64,10 @@ body {
 
 .form {
     width: 50%;
-    height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
-    overflow: hidden;
 }
 
 .login-form,
@@ -179,13 +177,14 @@ body {
 /* Slider / Image Side */
 .slider {
     width: 50%;
+    height: 700px;
     position: relative;
 }
 
 .carousel,
 .carousel-inner,
 .carousel-item {
-    height: 700px;
+    height: 100%;
     width: 100%;
 }
 
