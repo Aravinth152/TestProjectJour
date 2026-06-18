@@ -64,10 +64,12 @@ body {
 
 .form {
     width: 50%;
+    height: 700px;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
+    overflow: hidden;
 }
 
 .login-form,
@@ -183,7 +185,7 @@ body {
 .carousel,
 .carousel-inner,
 .carousel-item {
-    height: 100%;
+    height: 700px;
     width: 100%;
 }
 
@@ -191,6 +193,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
 }
 
 .carousel-control-prev,
